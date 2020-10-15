@@ -14,8 +14,8 @@ else
 fi
 #echo $dlrm_extra_option
 
-dlrm_py="python dlrm_s_pytorch.py"
-dlrm_c2="python dlrm_s_caffe2.py"
+dlrm_py="python3 dlrm_s_pytorch.py"
+dlrm_c2="python3 dlrm_s_caffe2.py"
 
 echo "Running commands ..."
 #run pytorch

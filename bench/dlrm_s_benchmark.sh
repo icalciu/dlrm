@@ -13,18 +13,18 @@ fi
 #echo $dlrm_extra_option
 
 cpu=1
-gpu=1
+gpu=0
 pt=1
-c2=1
+c2=0
 
-ncores=28 #12 #6
+ncores=1 # 28 12 6
 nsockets="0"
 
 ngpus="1 2 4 8"
 
 numa_cmd="numactl --physcpubind=0-$((ncores-1)) -m $nsockets" #run on one socket, without HT
-dlrm_pt_bin="python dlrm_s_pytorch.py"
-dlrm_c2_bin="python dlrm_s_caffe2.py"
+dlrm_pt_bin="python3 dlrm_s_pytorch.py"
+dlrm_c2_bin="python3 dlrm_s_caffe2.py"
 
 data=random #synthetic
 print_freq=100
