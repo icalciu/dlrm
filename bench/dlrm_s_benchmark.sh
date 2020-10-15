@@ -17,7 +17,7 @@ gpu=0
 pt=1
 c2=0
 
-ncores=1 # 28 12 6
+ncores=8 # 28 12 6
 nsockets="0"
 
 ngpus="1 2 4 8"
@@ -27,22 +27,35 @@ dlrm_pt_bin="python3 dlrm_s_pytorch.py"
 dlrm_c2_bin="python3 dlrm_s_caffe2.py"
 
 data=random #synthetic
-print_freq=100
+print_freq=1
 rand_seed=727
 
 c2_net="async_scheduling"
 
 #Model param
-mb_size=2048 #1024 #512 #256
-nbatches=1000 #500 #100
-bot_mlp="512-512-64"
-top_mlp="1024-1024-1024-1"
-emb_size=64
-nindices=100
-emb="1000000-1000000-1000000-1000000-1000000-1000000-1000000-1000000"
+# Originals
+# mb_size=2048 #1024 #512 #256
+# nbatches=1000 #500 #100
+# bot_mlp="512-512-64"
+# top_mlp="1024-1024-1024-1"
+# emb_size=64
+# nindices=100
+# emb="1000000-1000000-1000000-1000000-1000000-1000000-1000000-1000000"
+# interaction="dot"
+# tnworkers=0
+# tmb_size=16384
+
+# Reduced Sizes
+mb_size=1024
+nbatches=10
+bot_mlp="16-2"
+top_mlp="16-8-1"
+emb_size=2
+nindices=10
+emb="100000-1000-1000-1000-1000"
 interaction="dot"
 tnworkers=0
-tmb_size=16384
+tmb_size=16
 
 #_args="--mini-batch-size="${mb_size}\
 _args=" --num-batches="${nbatches}\
