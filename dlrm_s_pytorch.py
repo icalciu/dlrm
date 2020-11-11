@@ -503,6 +503,10 @@ if __name__ == "__main__":
     ### import packages ###
     import sys
     import argparse
+    import timeit
+
+    start_time = timeit.default_timer()
+    profile_times = {}
 
     ### parse arguments ###
     parser = argparse.ArgumentParser(
@@ -944,6 +948,11 @@ if __name__ == "__main__":
             )
         )
 
+    # Starting actual training
+    end_time = timeit.default_timer()
+    profile_times["init"] = end_time - start_time
+    start_time = end_time
+
     print("time/loss/accuracy (if enabled):")
     with torch.autograd.profiler.profile(args.enable_profiling, use_gpu) as prof:
         while k < args.nepochs:
@@ -1240,6 +1249,10 @@ if __name__ == "__main__":
 
             k += 1  # nepochs
 
+    end_time = timeit.default_timer()
+    profile_times["train"] = end_time - start_time
+    start_time = end_time
+
     # profiling
     if args.enable_profiling:
         with open("dlrm_s_pytorch.prof", "w") as prof_f:
@@ -1344,3 +1357,9 @@ if __name__ == "__main__":
         prediction = sess.run(output_names=["pred"], input_feed=dict_inputs)
         print("prediction", prediction)
         '''
+
+    end_time = timeit.default_timer()
+    profile_times["fini"] = end_time - start_time
+    start_time = end_time
+
+    print("profile_times:::" + str(json.dumps(profile_times)))
