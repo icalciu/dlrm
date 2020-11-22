@@ -20,12 +20,14 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 # others
 from os import path
+import os
 import bisect
 import collections
 
 import data_utils
 
 # numpy
+os.environ["OMP_NUM_THREADS"] = "6"
 import numpy as np
 from numpy import random as ra
 
