@@ -27,7 +27,6 @@ import collections
 import data_utils
 
 # numpy
-os.environ["OMP_NUM_THREADS"] = "1"
 import numpy as np
 from numpy import random as ra
 
